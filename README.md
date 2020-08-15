@@ -2,7 +2,7 @@
 
 This is simple example project to show one way to use Concource CI. This pipeline just builds couple of dummy docker
 images and then pushes images to Docker Hub. Pipeline template is using runtime variables, so different pipelines
-can be created just by adding only file with variables into the project.
+can be created just by adding different variable files into the project.
 
 More information about Concource CI can be found from https://concourse-ci.org/  
 
@@ -19,8 +19,11 @@ More information about Concource CI can be found from https://concourse-ci.org/
 4. Login with fly `fly --target concource-example login --concourse-url http://localhost:8080`
 5. Create pipeline A `fly -t concource-example set-pipeline -p concource-example-pipeline-a -c concource/pipelines/concource-example/concource-example-pipeline.yml --load-vars-from concource/variables/runtime_variables_a.yml`
 6. Create pipeline B `fly -t concource-example set-pipeline -p concource-example-pipeline-b -c concource/pipelines/concource-example/concource-example-pipeline.yml --load-vars-from concource/variables/runtime_variables_b.yml`
-7. Login to Docker Hub
+7. Provide your Docker Hub Credentials for local pipeline
 8. Push something into Git or trigger build from GUI
+
+**PLEASE NOTICE** CONCOURCE_ENCRYPTION_KEY in *ci_encryption_key.env* is not very secret, because it is in public repository. So, don't use it in any real contexts.
+
 
 #### Execute single task
 
