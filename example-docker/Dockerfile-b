@@ -1,4 +1,0 @@
-FROM ubuntu:latest
-MAINTAINER alperttiti
-
-RUN echo "World hello"

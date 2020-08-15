@@ -6,7 +6,7 @@ image_resource:
   source: {repository: concourse/builder-task}
 
 inputs:
-  - name: concource-example
+  - name: prebuild-output
 
 outputs:
   - name: image

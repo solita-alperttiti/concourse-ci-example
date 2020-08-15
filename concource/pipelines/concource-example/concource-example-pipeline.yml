@@ -25,11 +25,16 @@ jobs:
   plan:
     - get: concource-example
       trigger: ((trigger-build))
+    - task: prepare-build
+      file: concource-example/concource/pipelines/concource-example/concource-example-prepare-build.yml
+      vars:
+        docker-file: ((docker-file))
+        docker-tag: ((docker-tag))
     - task: build
       file: concource-example/concource/pipelines/concource-example/concource-example-build.yml
       privileged: true
       params:
-        DOCKERFILE: concource-example/example-docker/((docker-file))
+        DOCKERFILE: prebuild-output/((docker-file))
         REPOSITORY: ((docker-source))
         TAG: ((docker-tag))
     - put: concource-example-registry

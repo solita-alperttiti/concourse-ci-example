@@ -1,4 +1,3 @@
 FROM ubuntu:latest
 MAINTAINER alperttiti
 
-RUN echo "Hello world"
