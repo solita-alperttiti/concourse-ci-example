@@ -6,5 +6,5 @@ docker-file: Dockerfile-b
 docker-net: concource-example
 trigger-build: true
 git-source: https://github.com/solita-alperttiti/concource-ci-example.git
-git-branch: master
+git-branch: upgrade_registry_image_resource
 concourse-password: example321
