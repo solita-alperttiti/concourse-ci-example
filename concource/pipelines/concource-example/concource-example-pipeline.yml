@@ -35,8 +35,6 @@ jobs:
       privileged: true
       params:
         DOCKERFILE: prebuild-output/((docker-file))
-        REPOSITORY: ((docker-source))
-        TAG: ((docker-tag))
     - put: concource-example-registry
       params: {
         image: image/image.tar
