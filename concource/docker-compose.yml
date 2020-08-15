@@ -1,0 +1,48 @@
+version: '3.6'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: concourse
+      POSTGRES_USER: concourse_user
+      POSTGRES_PASSWORD: concourse_pass
+    restart: always
+    networks:
+      - concource-example
+
+  web:
+    image: concourse/concourse:6.4.1-ubuntu
+    command: web
+    links: [db]
+    depends_on: [db]
+    ports: ["8080:8080"]
+    volumes: ["./keys/web:/concourse-keys"]
+    env_file:
+      - ./variables/ci_common_env_variables.env
+      - ./variables/ci_encryption_key.env
+    restart: always
+    networks:
+      - concource-example
+
+  worker:
+    image: concourse/concourse:6.4.1-ubuntu
+    command: worker
+    privileged: true
+    depends_on: [web]
+    volumes: ["./keys/worker:/concourse-keys"]
+    links: [web]
+    stop_signal: SIGUSR2
+    environment:
+      CONCOURSE_TSA_HOST: web:2222
+    restart: always
+    networks:
+      - concource-example
+
+networks:
+  concource-example:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.50.0/24

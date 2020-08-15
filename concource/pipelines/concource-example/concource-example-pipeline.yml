@@ -1,0 +1,38 @@
+resources:
+- name: concource-example
+  type: git
+  source:
+    uri: ((git-source))
+    branch: ((git-branch))
+
+- name: concource-example-registry
+  type: registry-image-resource
+  source:
+    repository: ((docker-source))
+    tag: ((docker-tag))
+    username: ((docker-username))
+    password: ((docker-password))
+
+resource_types:
+- name: registry-image-resource
+  type: registry-image
+  source:
+    repository: concourse/registry-image-resource
+    tag: latest
+
+jobs:
+- name: build-and-publish
+  plan:
+    - get: concource-example
+      trigger: ((trigger-build))
+    - task: build
+      file: concource-example/concource/pipelines/concource-example/concource-example-build.yml
+      privileged: true
+      params:
+        DOCKERFILE: concource-example/example-docker/((docker-file))
+        REPOSITORY: ((docker-source))
+        TAG: ((docker-tag))
+    - put: concource-example-registry
+      params: {
+        image: image/image.tar
+      }

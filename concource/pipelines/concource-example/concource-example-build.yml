@@ -1,0 +1,17 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source: {repository: concourse/builder-task}
+
+inputs:
+  - name: concource-example
+
+outputs:
+  - name: image
+
+caches:
+  - path: image-cache
+
+run: {path: build}
