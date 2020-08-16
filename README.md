@@ -41,6 +41,7 @@ More information about Concourse CI can be found from https://concourse-ci.org/
 
 **PLEASE NOTICE** CONCOURSE_ENCRYPTION_KEY in *ci_encryption_key.env* is not very secret, because it is in public repository. So, don't use it in any real contexts.
 
+![](concourse_example_pipeline.png)
 
 #### Execute single task
 
