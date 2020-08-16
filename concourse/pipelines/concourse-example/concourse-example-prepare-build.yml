@@ -8,12 +8,12 @@ image_resource:
     tag: "bionic"
 
 inputs:
-  - name: concource-example
+  - name: concourse-example
 
 outputs:
   - name: prebuild-output
 
 run:
-  path: ./concource-example/concource/pipelines/concource-example/prepare_build.sh
+  path: ./concourse-example/concourse/pipelines/concourse-example/prepare_build.sh
   args: [((docker-file)), ((docker-tag)), prebuild-output]
   dir: .

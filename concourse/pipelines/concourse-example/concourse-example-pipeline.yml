@@ -1,11 +1,11 @@
 resources:
-- name: concource-example
+- name: concourse-example
   type: git
   source:
     uri: ((git-source))
     branch: ((git-branch))
 
-- name: concource-example-registry
+- name: concourse-example-registry
   type: registry-image-resource
   source:
     repository: ((docker-source))
@@ -23,19 +23,19 @@ resource_types:
 jobs:
 - name: build-and-publish
   plan:
-    - get: concource-example
+    - get: concourse-example
       trigger: ((trigger-build))
     - task: prepare-build
-      file: concource-example/concource/pipelines/concource-example/concource-example-prepare-build.yml
+      file: concourse-example/concourse/pipelines/concourse-example/concourse-example-prepare-build.yml
       vars:
         docker-file: ((docker-file))
         docker-tag: ((docker-tag))
     - task: build
-      file: concource-example/concource/pipelines/concource-example/concource-example-build.yml
+      file: concourse-example/concourse/pipelines/concourse-example/concourse-example-build.yml
       privileged: true
       params:
         DOCKERFILE: prebuild-output/((docker-file))
-    - put: concource-example-registry
+    - put: concourse-example-registry
       params: {
         image: image/image.tar
       }

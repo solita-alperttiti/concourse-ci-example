@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: concourse_pass
     restart: always
     networks:
-      - concource-example
+      - concourse-example
 
   web:
     image: concourse/concourse:6.4.1-ubuntu
@@ -23,7 +23,7 @@ services:
       - ./variables/ci_encryption_key.env
     restart: always
     networks:
-      - concource-example
+      - concourse-example
 
   worker:
     image: concourse/concourse:6.4.1-ubuntu
@@ -37,10 +37,10 @@ services:
       CONCOURSE_TSA_HOST: web:2222
     restart: always
     networks:
-      - concource-example
+      - concourse-example
 
 networks:
-  concource-example:
+  concourse-example:
     driver: bridge
     ipam:
       driver: default
