@@ -4,6 +4,8 @@ This is simple example project to show one way to use Concourse CI. This pipelin
 images and then pushes images to Docker Hub. Pipeline template is using runtime variables, so different pipelines
 can be created just by adding different variable files into the project.
 
+My blog post about this project can be found from https://dev.solita.fi/2020/08/17/creating-your-ci-cd-pipeline-with-concourse.html
+
 More information about Concourse CI can be found from https://concourse-ci.org/  
 
 #### Pre-requirements
@@ -56,3 +58,8 @@ More information about Concourse CI can be found from https://concourse-ci.org/
 - ```docker-compose up``` in concourse/
 - ```docker-compose down``` in concourse/
 
+
+
+My blog post about this project can be found from https://dev.solita.fi/2020/08/17/creating-your-ci-cd-pipeline-with-concourse.html
+
+More information about Concourse CI can be found from https://concourse-ci.org/  
